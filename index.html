@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<!--
+  Bar Nizabel · Ronda del Pilar, 6 · Zafra (Badajoz)
+  Concepto: «Punto medio». Sale del rótulo del bar, «CAFÉ · COPAS»: el punto
+  entre las dos palabras es el bar, a medio camino entre el café de la mañana
+  y la copa de la noche, y punto de encuentro del barrio. Ese punto es la
+  cortina, el cursor, los separadores, la máscara de la terraza y el estado
+  «abierto ahora».
+
+  Logotipo provisional y datos sin confirmar: ver README. La foto de la
+  terraza es de archivo (Pexels), no del bar.
+-->
+<!-- ═══ [MANDO DE MAQUETA] AVISO: esta maqueta lleva un mando de demostración
+     (abajo a la izquierda, solo con ?revision en la URL) que cambia entre dos
+     densidades visuales. NO DEBE VIAJAR A PRODUCCIÓN: node scripts/quitar-mando.mjs
+     fin del bloque [MANDO DE MAQUETA] ═══ -->
+<html lang="es" class="sin-js densidad-punto">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bar Nizabel · Café y copas en la Ronda del Pilar, Zafra</title>
+<meta name="description" content="Bar Nizabel, en la Ronda del Pilar de Zafra: café y desayunos por la mañana, cañas y tapas por la tarde y copas por la noche. Terraza. De 8:30 a 2:00.">
+<meta name="theme-color" content="#3A2E25">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Bar Nizabel · Café · Copas">
+<meta property="og:description" content="Del café de la mañana a la copa de la noche, en la Ronda del Pilar de Zafra.">
+<meta property="og:locale" content="es_ES">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Antonio:wght@400;500;600;700&family=Nunito+Sans:ital,opsz,wght@0,6..12,400;0,6..12,600;0,6..12,700;1,6..12,400&display=swap">
+<link rel="stylesheet" href="css/estilos.css?v=ee14ff8a">
+<script>
+/* Bloqueante a propósito: la clase de JS (y la densidad de la maqueta) se
+   resuelven antes del primer pintado. */
+(function () {
+  var h = document.documentElement;
+  h.classList.remove('sin-js');
+  h.classList.add('con-js');
+  /* red de seguridad: si main.js no llega, la cortina se va igual */
+  setTimeout(function () { h.classList.add('cortina-fuera'); }, 7000);
+  /* [MANDO DE MAQUETA] la densidad guardada solo cuenta en modo revisión (?revision) */
+  if (!/[?&]revision\b/.test(location.search)) return;
+  try {
+    var d = localStorage.getItem('nizabel-densidad');
+    if (d === 'sobria' || d === 'punto') {
+      h.classList.remove('densidad-punto', 'densidad-sobria');
+      h.classList.add('densidad-' + d);
+    }
+  } catch (e) {}
+  /* fin del bloque [MANDO DE MAQUETA] */
+})();
+</script>
+<noscript><style>.cortina{display:none!important}</style></noscript>
+</head>
+<body>
+
+<a class="salto-contenido" href="#contenido">Saltar al contenido</a>
+
+<!-- ───────── Cortina: un punto que se estira en línea y la línea se abre ───────── -->
+<div class="cortina" id="cortina" aria-hidden="true">
+  <svg class="cortina__lienzo" id="cortina-lienzo" preserveAspectRatio="none">
+    <path class="cortina__muro" id="cortina-muro" fill-rule="evenodd"/>
+    <path class="cortina__filo" id="cortina-filo"/>
+  </svg>
+  <div class="cortina__rotulo">
+    <span class="cortina__palabra cortina__palabra--izq"><span>Café</span></span>
+    <span class="cortina__punto" id="cortina-punto"></span>
+    <span class="cortina__palabra cortina__palabra--der"><span>Copas</span></span>
+  </div>
+</div>
+
+<!-- ───────── Cabecera ───────── -->
+<header class="cabecera" id="cabecera">
+  <a class="cabecera__marca" href="#inicio" aria-label="Bar Nizabel, ir al inicio">
+    <img src="assets/logo-nizabel-ficha.svg" width="352" height="60" alt="Café · Copas · Nizabel">
+  </a>
+  <nav class="cabecera__nav" id="menu" aria-label="Principal">
+    <a href="#horario">Horario</a>
+    <a href="#terraza">Terraza</a>
+    <a href="#resenas">Reseñas</a>
+    <a href="#visita">Cómo llegar</a>
+    <a class="cabecera__llamar-movil" href="tel:+34622693598">Llamar · 622 69 35 98</a>
+  </nav>
+  <a class="boton boton--mini cabecera__llamar iman" href="tel:+34622693598"><span class="boton__punto" aria-hidden="true"></span>Llamar</a>
+  <button class="hamburguesa" id="hamburguesa" type="button" aria-expanded="false" aria-controls="menu">
+    <span class="hamburguesa__linea"></span><span class="hamburguesa__linea"></span>
+    <span class="visualmente-oculto">Abrir menú</span>
+  </button>
+</header>
+
+<main id="contenido">
+
+  <!-- ───────── Hero: el rótulo ───────── -->
+  <section class="hero" id="inicio" aria-labelledby="hero-titulo">
+    <div class="hero__escena">
+      <h1 class="hero__titulo" id="hero-titulo" aria-label="Café · Copas · Nizabel">
+        <span class="hero__linea" aria-hidden="true">
+          <span class="hero__cafe" data-revelar="letras">Café</span>
+          <span class="hero__punto" id="hero-punto"><i class="hero__punto-int"></i></span>
+          <span class="hero__copas" data-revelar="letras">Copas</span>
+        </span>
+        <span class="hero__nombre" aria-hidden="true">Nizabel</span>
+      </h1>
+    </div>
+    <div class="hero__pie">
+      <p class="hero__sub">
+        <span class="hero__direccion">Ronda del Pilar, 6 · Zafra</span>
+        <span class="estado" data-estado><i class="estado__punto" aria-hidden="true"></i><span class="estado__texto" data-estado-texto>De lunes a viernes desde las 8:30</span></span>
+      </p>
+      <div class="hero__acciones">
+        <a class="boton boton--punto iman" href="tel:+34622693598">Llamar · 622 69 35 98</a>
+        <a class="boton boton--linea iman" href="https://www.google.com/maps/dir/?api=1&amp;destination=38.4254411%2C-6.4150102" target="_blank" rel="noopener">Cómo llegar</a>
+      </div>
+    </div>
+    <span class="hero__desliza" aria-hidden="true">Baja</span>
+  </section>
+
+  <!-- ═══ [MANDO DE MAQUETA] franja «ahora mismo»: solo se ve en la versión sobria ═══ -->
+  <aside class="ahora" id="ahora" aria-label="Ahora mismo en Nizabel">
+    <p class="ahora__texto"><span class="ahora__rotulo">Ahora mismo</span> <strong data-ahora-momento>—</strong> <span data-ahora-que></span></p>
+    <p class="ahora__estado" data-ahora-estado></p>
+  </aside>
+  <!-- ═══ fin del bloque [MANDO DE MAQUETA] ═══ -->
+
+  <div class="sep" aria-hidden="true"><span class="sep__linea"></span><span class="sep__punto"></span><span class="sep__linea"></span></div>
+
+  <!-- ───────── Un día: mañana, tarde y noche ───────── -->
+  <section class="horas" id="horario" aria-labelledby="horas-titulo">
+    <header class="horas__cabeza">
+      <p class="antetitulo">Un día en Nizabel</p>
+      <h2 class="titular" id="horas-titulo" data-revelar="palabras">De 8:30 a 2:00</h2>
+      <p class="horas__entrada">Abrimos temprano para el café y cerramos tarde con la copa. En medio, la tarde.</p>
+    </header>
+
+    <ol class="pila" id="pila">
+      <li class="pila__item" id="momento-manana">
+        <article class="tarjeta" data-momento="manana">
+          <div class="tarjeta__texto">
+            <p class="tarjeta__num">01 · Mañana</p>
+            <h3 class="tarjeta__titulo">Café y desayunos</h3>
+            <p class="tarjeta__que">Café, desayunos, tostadas y bollería.</p>
+            <p class="tarjeta__cuando">De lunes a viernes, desde las 8:30. Sábado y domingo abrimos por la tarde, a las 16:00.</p>
+            <ul class="tarjeta__carta" data-carta="manana" hidden></ul>
+          </div>
+          <figure class="reloj" data-hora="8:30">
+            <svg class="reloj__svg" viewBox="0 0 200 200" aria-hidden="true">
+              <circle class="reloj__esfera" cx="100" cy="100" r="88"/>
+              <g class="reloj__marcas"></g>
+              <line class="reloj__horas" x1="100" y1="100" x2="100" y2="56"/>
+              <line class="reloj__minutos" x1="100" y1="100" x2="100" y2="30"/>
+              <circle class="reloj__eje" cx="100" cy="100" r="6"/>
+            </svg>
+            <figcaption><strong>8:30</strong> abrimos</figcaption>
+          </figure>
+          <table class="franja">
+            <caption class="visualmente-oculto">Horario de mañana</caption>
+            <tbody>
+              <tr><th scope="row">Lunes a viernes</th><td>desde las 8:30</td></tr>
+              <tr><th scope="row">Sábado y domingo</th><td>cerrado por la mañana</td></tr>
+            </tbody>
+          </table>
+        </article>
+      </li>
+      <li class="pila__item" id="momento-tarde">
+        <article class="tarjeta" data-momento="tarde">
+          <div class="tarjeta__texto">
+            <p class="tarjeta__num">02 · Tarde</p>
+            <h3 class="tarjeta__titulo">Cañas y tapas</h3>
+            <p class="tarjeta__que">Cañas y tapas, dentro o en la terraza.</p>
+            <p class="tarjeta__cuando">Todos los días. Entre semana seguimos desde la mañana; sábado y domingo abrimos a las 16:00.</p>
+            <ul class="tarjeta__carta" data-carta="tarde" hidden></ul>
+          </div>
+          <figure class="reloj" data-hora="16:00">
+            <svg class="reloj__svg" viewBox="0 0 200 200" aria-hidden="true">
+              <circle class="reloj__esfera" cx="100" cy="100" r="88"/>
+              <g class="reloj__marcas"></g>
+              <line class="reloj__horas" x1="100" y1="100" x2="100" y2="56"/>
+              <line class="reloj__minutos" x1="100" y1="100" x2="100" y2="30"/>
+              <circle class="reloj__eje" cx="100" cy="100" r="6"/>
+            </svg>
+            <figcaption><strong>16:00</strong> abrimos el finde</figcaption>
+          </figure>
+          <table class="franja">
+            <caption class="visualmente-oculto">Horario de tarde</caption>
+            <tbody>
+              <tr><th scope="row">Lunes a viernes</th><td>toda la tarde</td></tr>
+              <tr><th scope="row">Sábado y domingo</th><td>desde las 16:00</td></tr>
+            </tbody>
+          </table>
+        </article>
+      </li>
+      <li class="pila__item" id="momento-noche">
+        <article class="tarjeta" data-momento="noche">
+          <div class="tarjeta__texto">
+            <p class="tarjeta__num">03 · Noche</p>
+            <h3 class="tarjeta__titulo">Copas</h3>
+            <p class="tarjeta__que">Copas con los amigos, dentro o fuera, hasta el cierre.</p>
+            <p class="tarjeta__cuando">Hasta la 1:00 de lunes a jueves, hasta las 2:00 viernes y sábado, y hasta medianoche el domingo.</p>
+            <ul class="tarjeta__carta" data-carta="noche" hidden></ul>
+          </div>
+          <figure class="reloj" data-hora="2:00">
+            <svg class="reloj__svg" viewBox="0 0 200 200" aria-hidden="true">
+              <circle class="reloj__esfera" cx="100" cy="100" r="88"/>
+              <g class="reloj__marcas"></g>
+              <line class="reloj__horas" x1="100" y1="100" x2="100" y2="56"/>
+              <line class="reloj__minutos" x1="100" y1="100" x2="100" y2="30"/>
+              <circle class="reloj__eje" cx="100" cy="100" r="6"/>
+            </svg>
+            <figcaption><strong>2:00</strong> cerramos viernes y sábado</figcaption>
+          </figure>
+          <table class="franja">
+            <caption class="visualmente-oculto">Horario de noche</caption>
+            <tbody>
+              <tr><th scope="row">Lunes a jueves</th><td>hasta la 1:00</td></tr>
+              <tr><th scope="row">Viernes y sábado</th><td>hasta las 2:00</td></tr>
+              <tr><th scope="row">Domingo</th><td>hasta medianoche</td></tr>
+            </tbody>
+          </table>
+        </article>
+      </li>
+    </ol>
+  </section>
+
+  <!-- ───────── Cinta ───────── -->
+  <section class="cinta" aria-label="Qué hay en Nizabel">
+    <div class="cinta__pista" id="cinta-pista">
+      <div class="cinta__grupo">
+        <span>café</span><i class="cinta__punto" aria-hidden="true"></i>
+        <span>tostadas</span><i class="cinta__punto" aria-hidden="true"></i>
+        <span>cañas</span><i class="cinta__punto" aria-hidden="true"></i>
+        <span>tapas</span><i class="cinta__punto" aria-hidden="true"></i>
+        <span>copas</span><i class="cinta__punto" aria-hidden="true"></i>
+        <span>terraza</span><i class="cinta__punto" aria-hidden="true"></i>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────── La terraza ───────── -->
+  <section class="terraza" id="terraza" aria-labelledby="terraza-titulo">
+    <figure class="terraza__foto" id="terraza-foto">
+      <img src="assets/img/terraza-1600.jpg" srcset="assets/img/terraza-900.jpg 900w, assets/img/terraza-1600.jpg 1600w"
+           sizes="(max-width: 900px) 100vw, 60vw" width="1600" height="1151" loading="lazy" decoding="async"
+           alt="Mesas y sillas de terraza al sol bajo una sombrilla blanca, en una calle de casas antiguas">
+      <span class="terraza__punto" aria-hidden="true"></span>
+      <figcaption class="terraza__credito">Fotografía de ambiente</figcaption>
+    </figure>
+    <div class="terraza__texto">
+      <p class="antetitulo">Fuera</p>
+      <h2 class="titular" id="terraza-titulo" data-revelar="palabras">La terraza</h2>
+      <p>Mesas en la acera de la Ronda del Pilar, bajo el toldo y las sombrillas. Para el café de media mañana, la caña de la tarde o la última de la noche.</p>
+      <p>Con sol, a la sombra del toldo. Por la noche, con la calle ya tranquila.</p>
+    </div>
+  </section>
+
+  <div class="sep" aria-hidden="true"><span class="sep__linea"></span><span class="sep__punto"></span><span class="sep__linea"></span></div>
+
+  <!-- ───────── Reseñas ───────── -->
+  <section class="resenas" id="resenas" aria-labelledby="resenas-titulo">
+    <header class="resenas__cabeza">
+      <p class="antetitulo">Lo que dicen en Google</p>
+      <h2 class="resenas__nota" id="resenas-titulo">
+        <span class="visualmente-oculto">4,3★ · 365 reseñas en Google</span>
+        <span class="resenas__cifra" aria-hidden="true"><span data-contador="4.3" data-decimales="1">4,3</span><span class="resenas__estrella">★</span></span>
+        <span class="resenas__cuantas" aria-hidden="true"><span data-contador="365">365</span> reseñas en Google</span>
+      </h2>
+      <div class="puntos-nota" aria-hidden="true" style="--nota: 4.3">
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+    </header>
+
+    <ul class="citas">
+      <li class="cita">
+        <blockquote><p>«Es un bar muy bueno para ir a desayunar o a tomar una copa con los amigos el personal es muy amable y las tostadas son baratas y buenas»</p></blockquote>
+        <p class="cita__firma">Pili <span>· en Google</span></p>
+      </li>
+      <li class="cita">
+        <blockquote><p>«El mejor sitio, para tomar algo, solo o con amigos, gente muy agradable para pasar la tarde y la mañana o la noche, lo recomiendo, yo voy casi todos los días.»</p></blockquote>
+        <p class="cita__firma">Francisco <span>· en Google</span></p>
+      </li>
+      <li class="cita">
+        <blockquote><p>«Buen trato, sitio ideal y céntrico para desayunar, cervezas y copas.»</p></blockquote>
+        <p class="cita__firma">Carlos <span>· en Google</span></p>
+      </li>
+    </ul>
+
+    <a class="boton boton--linea boton--oscuro iman" href="https://www.google.com/maps/place/Bar+Nizabel/@38.4254411,-6.4150102,17z/data=!4m6!3m5!1s0xd11558588421d69:0xe69b8292a60c42ec!8m2!3d38.4254411!4d-6.4150102" target="_blank" rel="noopener">Leer las reseñas en Google</a>
+  </section>
+
+  <!-- ───────── Visita ───────── -->
+  <section class="visita" id="visita" aria-labelledby="visita-titulo">
+    <header class="visita__cabeza">
+      <p class="antetitulo">Visita</p>
+      <h2 class="titular" id="visita-titulo" data-revelar="palabras">Pásate</h2>
+      <p class="visita__estado estado estado--claro" data-estado><i class="estado__punto" aria-hidden="true"></i><span class="estado__texto" data-estado-texto>Consulta el horario de la semana</span></p>
+    </header>
+
+    <div class="visita__rejilla">
+      <table class="semana" id="semana">
+        <caption>Horario de la semana</caption>
+        <tbody>
+          <tr data-dia="0"><th scope="row">Lunes</th><td>8:30 – 1:00</td></tr>
+          <tr data-dia="1"><th scope="row">Martes</th><td>8:30 – 1:00</td></tr>
+          <tr data-dia="2"><th scope="row">Miércoles</th><td>8:30 – 1:00</td></tr>
+          <tr data-dia="3"><th scope="row">Jueves</th><td>8:30 – 1:00</td></tr>
+          <tr data-dia="4"><th scope="row">Viernes</th><td>8:30 – 2:00</td></tr>
+          <tr data-dia="5"><th scope="row">Sábado</th><td>16:00 – 2:00</td></tr>
+          <tr data-dia="6"><th scope="row">Domingo</th><td>16:00 – 24:00</td></tr>
+        </tbody>
+      </table>
+
+      <dl class="datos">
+        <div><dt>Dirección</dt><dd>Ronda del Pilar, 6<br>06300 Zafra (Badajoz)</dd></div>
+        <div><dt>Teléfono</dt><dd><a href="tel:+34622693598">622 69 35 98</a></dd></div>
+        <div><dt>Precio medio</dt><dd>De 1 a 10 € por persona</dd></div>
+        <div><dt>Reservas</dt><dd>No se aceptan reservas</dd></div>
+        <div><dt>Terraza</dt><dd>Sí, en la acera</dd></div>
+      </dl>
+
+      <div class="mapa">
+        <div class="mapa__consentimiento" id="mapa-consentimiento">
+          <p>El mapa es de Google Maps y solo se carga si lo pides. Al cargarlo, Google puede poner sus propias cookies.</p>
+          <button class="boton boton--mini boton--punto" id="mapa-boton" type="button">Ver el mapa</button>
+          <a class="enlace" href="https://www.google.com/maps/dir/?api=1&amp;destination=38.4254411%2C-6.4150102" target="_blank" rel="noopener">o abrir la ruta en Google Maps</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ───────── Pie ───────── -->
+<footer class="pie">
+  <div class="pie__marca">
+    <img src="assets/logo-nizabel.svg" width="373" height="168" alt="Café · Copas · Nizabel" loading="lazy">
+  </div>
+  <div class="pie__datos">
+    <p>Ronda del Pilar, 6 · 06300 Zafra (Badajoz)</p>
+    <p><a href="tel:+34622693598">622 69 35 98</a> · <a href="https://www.facebook.com/nizabel.cb/" target="_blank" rel="noopener">Facebook</a></p>
+  </div>
+  <div class="pie__legal">
+    <p><a href="aviso-legal.html">Aviso legal</a> · <a href="privacidad.html">Privacidad y cookies</a> · <button class="enlace" type="button" id="cookies-reabrir">Aviso de cookies</button></p>
+    <p>© <span id="anio">2026</span> Bar Nizabel</p>
+  </div>
+</footer>
+
+<!-- ───────── Aviso de cookies ───────── -->
+<div class="cookies" id="cookies" role="region" aria-label="Aviso de cookies" hidden>
+  <p class="cookies__texto">
+    Esta web no usa cookies de seguimiento. Solo guarda en tu navegador que ya has visto este aviso.
+    El mapa de Google se carga únicamente si lo pides. <a href="privacidad.html">Más información</a>.
+  </p>
+  <div class="cookies__acciones">
+    <button class="boton boton--mini boton--punto" id="cookies-aceptar" type="button">De acuerdo</button>
+  </div>
+</div>
+
+<!-- ═══ [MANDO DE MAQUETA] · solo con ?revision · NO VIAJA AL CLIENTE ═══ -->
+<div class="mando" id="mando" hidden>
+  <span class="mando__titulo">Versión</span>
+  <div class="mando__botones" role="group" aria-label="Densidad visual de la maqueta">
+    <button type="button" data-densidad="punto" aria-pressed="true">Punto medio</button>
+    <button type="button" data-densidad="sobria" aria-pressed="false">Sobria</button>
+  </div>
+  <span class="mando__pie">Dos versiones de la misma web</span>
+</div>
+<!-- ═══ fin del bloque [MANDO DE MAQUETA] ═══ -->
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="js/horario.js?v=276a6f07"></script>
+<script src="js/main.js?v=0b4bea08"></script>
+</body>
+</html>

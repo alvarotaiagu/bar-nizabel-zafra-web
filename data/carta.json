@@ -1,0 +1,10 @@
+{
+  "_nota": "Carta preparada y VACÍA a propósito: el bar no ha pasado carta ni precios. Cuando la pasen, rellenar cada momento con {\"nombre\": \"Tostada con tomate\", \"precio\": \"2,00 €\"} (precio opcional). La web la pinta sola dentro de su tarjeta; con las listas vacías no se ve nada.",
+  "actualizado": null,
+  "fuente": "[PENDIENTE] carta del bar",
+  "momentos": {
+    "manana": [],
+    "tarde": [],
+    "noche": []
+  }
+}
